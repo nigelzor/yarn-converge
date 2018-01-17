@@ -1,7 +1,7 @@
 yarn-converge
 =============
 
-usage: `yarn-converge /path/to/yarn.lock`
+usage: `yarn-converge [lockfile]`
 
 over time, yarn.lock can come to contain multiple different versions
 of a dependency, even when their requested version ranges overlap.

@@ -1,15 +1,25 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const path = require('path');
 const lockfile = require('@yarnpkg/lockfile');
 const npa = require('npm-package-arg');
 const semver = require('semver');
 
-if (process.argv.length !== 3) {
-  console.log('usage: yarn-converge /path/to/yarn.lock');
+if (process.argv.length > 3) {
+  console.log('usage: yarn-converge [lockfile]');
   process.exit(1);
 }
 
-const filename = process.argv[2];
+let filename = process.argv[2];
+if (filename) {
+  const stat = fs.statSync(filename);
+  if (stat.isDirectory()) {
+    filename = path.join(filename, 'yarn.lock');
+  }
+} else {
+  filename = 'yarn.lock';
+}
+
 const content = lockfile.parse(fs.readFileSync(filename, 'utf8'));
 
 if (!content || content.type !== 'success') {
