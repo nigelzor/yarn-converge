@@ -7,6 +7,6 @@
   "dependencies": {
     "@yarnpkg/lockfile": "^1.0.0",
     "npm-package-arg": "^6.0.0",
-    "semver": "^5.5.0"
+    "semver": "^7.5.2"
   }
 }
